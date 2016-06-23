@@ -2,7 +2,7 @@
 
 Vytvořte třídu děděním z **NAttreid\Routers\Route**
 ```php
-class PageRoute extends NAttreid\Routers\Route {
+class PageRoute extends \NAttreid\Routers\Route {
 
     /** @var PagesRepository */
     private $pageModel;
