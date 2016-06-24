@@ -10,17 +10,17 @@ extensions:
 a nastavte
 ```neon
 services:
-    routeConfigurator: Configuration
+    routeConfigure: RouteConfigure
 
 router:
     routers:
         - FrontRouter
-    configuration: @routeConfigurator
+    configuration: @routeConfigure
 ```
 
 Nastaveni configuratoru
 ```php
-class Configuration implements \NAttreid\Routers\IConfigure {
+class RouteConfigure implements \NAttreid\Routers\IConfigure {
     public function getDefaultLanguage() {
         return 'cs';
     }

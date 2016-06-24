@@ -20,7 +20,7 @@ class Extension extends \Nette\DI\CompilerExtension {
 
         $configuration = $config['configuration'];
         if ($configuration !== NULL) {
-            if (!$configuration instanceof \NAttreid\Routers\IConfigure) {
+            if (!($configuration instanceof \NAttreid\Routers\IConfigure)) {
                 throw new \Nette\InvalidArgumentException("Route Configuration musi implementovat '\NAttreid\Routers\IConfigure'");
             }
         }
