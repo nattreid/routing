@@ -32,12 +32,7 @@ abstract class Route extends \Nette\Application\Routers\Route {
 
             $this->parameters = new Parameters($httpRequest->getQuery());
 
-            $locale = $this->parameters->get('locale');
-            if (empty($locale)) {
-                $this->parameters->locale = $locale = 'cs';
-            }
-
-            if ($this->in($locale, $url)) {
+            if ($this->in($url)) {
                 return new Request(
                         $this->getDefaults()[self::PRESENTER_KEY], //
                         $httpRequest->getMethod(), //
@@ -60,7 +55,7 @@ abstract class Route extends \Nette\Application\Routers\Route {
             $action = $this->parameters->action; // odstraneni action z parametru
 
             $this->slug = [];
-            $this->out($this->parameters->locale);
+            $this->out();
 
             $constructUrl = parent::constructUrl($appRequest, $refUrl);
             if (!$this->outCalled) {
@@ -104,16 +99,14 @@ abstract class Route extends \Nette\Application\Routers\Route {
 
     /**
      * Uprava url pro zobrazeni
-     * @param string $locale
      */
-    public function out($locale) {
+    public function out() {
         $this->outCalled = FALSE;
     }
 
     /**
      * Kontrola url pri requestu
-     * @param string $locale
      * @param string $url
      */
-    public abstract function in($locale, $url);
+    public abstract function in($url);
 }
