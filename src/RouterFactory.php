@@ -17,6 +17,11 @@ class RouterFactory {
     /** @var string */
     private $locale;
 
+    /**
+     * Prida router
+     * @param Router $router
+     * @param int $position
+     */
     public function addRouter(Router $router, $position = NULL) {
         if ($position !== NULL) {
             $arr = [$router];
@@ -26,6 +31,10 @@ class RouterFactory {
         }
     }
 
+    /**
+     * Nastavi konfiguraci
+     * @param IConfigure $configure
+     */
     public function setConfigure(IConfigure $configure) {
         if ($configure !== NULL) {
             $this->locale = '[<locale=' . $configure->getDefaultLanguage() . ' ' . implode('|', $configure->getAllowedLanguages()) . '>/]';
