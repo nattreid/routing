@@ -4,6 +4,7 @@ namespace NAttreid\Routers;
 
 /**
  * Parametry routy
+ * Po zavolani vlastnosti naprimo se vlastnost z tridy smaze. Pokud ma zustat staci zavolat pomoci metody get
  * 
  * @author Attreid <attreid@gmail.com>
  */
