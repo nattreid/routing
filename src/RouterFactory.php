@@ -18,7 +18,12 @@ class RouterFactory {
     private $locale;
 
     public function addRouter(Router $router, $position = NULL) {
-        $this->routers[] = $router;
+        if ($position !== NULL) {
+            $arr = [$router];
+            array_splice($this->routers, $position, 0, $arr);
+        } else {
+            $this->routers[] = $router;
+        }
     }
 
     public function setConfigure(IConfigure $configure) {
