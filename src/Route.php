@@ -52,7 +52,10 @@ abstract class Route extends \Nette\Application\Routers\Route {
     public function constructUrl(Request $appRequest, Url $refUrl) {
         if ($appRequest->presenterName === $this->getDefaults()[self::PRESENTER_KEY]) {
             $this->parameters = new Parameters($appRequest->getParameters());
-            $action = $this->parameters->action; // odstraneni action z parametru
+            
+            // odstraneni parametru
+            $this->parameters->action; 
+            $this->parameters->locale;
 
             $this->slug = [];
             $this->out();

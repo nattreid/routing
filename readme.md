@@ -7,15 +7,15 @@ extensions:
     router: NAttreid\Routers\DI\Extension
 ```
 
-a nastavte
+a nastavte. Router přebírá parametry $url a $sercure. $url => adresa, $secure => https nebo http (TRUE => https)
 ```neon
 services:
     routeConfigure: RouteConfigure
 
 router:
     routers:
-        - FrontRouter
-    configuration: @routeConfigure
+        - FrontRouter('url', FALSE)
+    configuration: RouteConfigure
 ```
 
 Nastaveni configuratoru

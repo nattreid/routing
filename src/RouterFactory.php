@@ -17,8 +17,11 @@ class RouterFactory {
     /** @var string */
     private $locale;
 
-    public function __construct(array $routers, IConfigure $configure = NULL) {
-        $this->routers = $routers;
+    public function addRouter(Router $router, $position = NULL) {
+        $this->routers[] = $router;
+    }
+
+    public function setConfigure(IConfigure $configure) {
         if ($configure !== NULL) {
             $this->locale = '[<locale=' . $configure->getDefaultLanguage() . ' ' . implode('|', $configure->getAllowedLanguages()) . '>/]';
         }
@@ -29,17 +32,11 @@ class RouterFactory {
      */
     public function createRouter() {
         $routeList = new RouteList();
-
         foreach ($this->routers as $router) {
-            if ($router instanceof Router) {
-                $router->setRouteList($routeList);
-                $router->setLocale($this->locale);
-                $router->createRoutes();
-            } else {
-                throw new \Nette\InvalidArgumentException("Router musi dedit z tridy 'NAttreid\Routers\Router'");
-            }
+            $router->setRouteList($routeList);
+            $router->setLocale($this->locale);
+            $router->createRoutes();
         }
-
         return $routeList;
     }
 
