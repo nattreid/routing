@@ -25,7 +25,7 @@ abstract class Router {
     /** @var string */
     private $flag;
 
-    public function __construct($url, $secured) {
+    public function __construct($url = NULL, $secured = FALSE) {
         $this->url = $url;
         $this->flag = $secured ? Route::SECURED : Route::OPTIONAL;
     }
