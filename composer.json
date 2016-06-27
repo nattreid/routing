@@ -1,5 +1,5 @@
 {
-    "name": "nattreid/routers",
+    "name": "nattreid/routing",
     "description": "Router extension for Nette Framework",
     "type": "library",
     "license": ["Unlicense"],
