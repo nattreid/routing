@@ -70,7 +70,7 @@ class Extension extends \Nette\DI\CompilerExtension {
 
         foreach ($this->config['routers'] as $router) {
             $builder->getDefinition($this->prefix('routerFactory'))
-                    ->addSetup('addRouter', ['@' . $this->prefix('router' . $this->getClass($router))]);
+                    ->addSetup('addRouter', ['@' . $this->prefix('router' . $this->getShortName($router))]);
         }
     }
 
