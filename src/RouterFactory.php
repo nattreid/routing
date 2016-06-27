@@ -35,13 +35,12 @@ class RouterFactory {
     }
 
     /**
-     * Nastavi konfiguraci
-     * @param IConfigure $configure
+     * Nastavi jazyk
+     * @param string $default
+     * @param array $allowed
      */
-    public function setConfigure(IConfigure $configure) {
-        if ($configure !== NULL) {
-            $this->locale = '[<locale=' . $configure->getDefaultLanguage() . ' ' . implode('|', $configure->getAllowedLanguages()) . '>/]';
-        }
+    public function setLang($default, array $allowed) {
+        $this->locale = '[<locale=' . $default . ' ' . implode('|', $allowed) . '>/]';
     }
 
     /**
