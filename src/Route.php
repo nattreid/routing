@@ -1,6 +1,6 @@
 <?php
 
-namespace NAttreid\Routers;
+namespace NAttreid\Routing;
 
 use Nette\Utils\Strings,
     Nette\Application\Request,

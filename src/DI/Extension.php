@@ -1,6 +1,6 @@
 <?php
 
-namespace NAttreid\Routers\DI;
+namespace NAttreid\Routing\DI;
 
 use Nette\DI\Statement;
 
@@ -55,13 +55,13 @@ class Extension extends \Nette\DI\CompilerExtension {
         }
 
         $builder->addDefinition($this->prefix('routerFactory'))
-                ->setClass('NAttreid\Routers\RouterFactory');
+                ->setClass('NAttreid\Routing\RouterFactory');
     }
 
     public function beforeCompile() {
         $builder = $this->getContainerBuilder();
         $builder->getDefinition('router')
-                ->setFactory('@NAttreid\Routers\RouterFactory::createRouter');
+                ->setFactory('@NAttreid\Routing\RouterFactory::createRouter');
 
         if (isset($this->config['configuration'])) {
             $builder->getDefinition($this->prefix('routerFactory'))

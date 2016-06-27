@@ -4,7 +4,7 @@
 V **config.neon** zaregistruje extension
 ```neon
 extensions:
-    router: NAttreid\Routers\DI\Extension
+    router: NAttreid\Routing\DI\Extension
 ```
 
 a nastavte. Router přebírá parametry $url a $sercure. $url => adresa, $secure => https nebo http (TRUE => https)
@@ -20,7 +20,7 @@ router:
 
 Nastaveni configuratoru
 ```php
-class RouteConfigure implements \NAttreid\Routers\IConfigure {
+class RouteConfigure implements \NAttreid\Routing\IConfigure {
     public function getDefaultLanguage() {
         return 'cs';
     }
@@ -33,7 +33,7 @@ class RouteConfigure implements \NAttreid\Routers\IConfigure {
 
 ## FrontRouter
 ```php
-class FrontRouter extends \NAttreid\Routers\Router {
+class FrontRouter extends \NAttreid\Routing\Router {
 
     /** @var PageRoute */
     private $pageRoute;
@@ -58,9 +58,9 @@ class FrontRouter extends \NAttreid\Routers\Router {
 
 ## PageRoute
 
-Vytvořte třídu děděním z **NAttreid\Routers\Route**
+Vytvořte třídu děděním z **NAttreid\Routing\Route**
 ```php
-class PageRoute extends \NAttreid\Routers\Route {
+class PageRoute extends \NAttreid\Routing\Route {
 
     /** @var PagesRepository */
     private $pageModel;
