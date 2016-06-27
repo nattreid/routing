@@ -9,7 +9,7 @@ use Nette\DI\Statement;
  *
  * @author Attreid <attreid@gmail.com>
  */
-class Extension extends \Nette\DI\CompilerExtension {
+class RoutingExtension extends \Nette\DI\CompilerExtension {
 
     private $defaults = [
         'routers' => [],

@@ -4,7 +4,7 @@
 V **config.neon** zaregistruje extension
 ```neon
 extensions:
-    router: NAttreid\Routing\DI\Extension
+    router: NAttreid\Routing\DI\RoutingExtension
 ```
 
 a nastavte. Router přebírá parametry $url a $sercure. $url => adresa, $secure => https nebo http (TRUE => https)
