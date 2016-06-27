@@ -25,8 +25,6 @@ class RoutingExtension extends \Nette\DI\CompilerExtension {
         $builder = $this->getContainerBuilder();
         $config = $this->validateConfig($this->defaults, $this->getConfig());
 
-        $lang = $config['configuration']['lang'];
-
         foreach ($config['routers'] as $router) {
             $builder->addDefinition($this->prefix('router' . $this->getShortName($router)))
                     ->setClass($this->getClass($router), $router instanceof Statement ? $router->arguments : []);
@@ -35,7 +33,8 @@ class RoutingExtension extends \Nette\DI\CompilerExtension {
         $factory = $builder->addDefinition($this->prefix('routerFactory'))
                 ->setClass('NAttreid\Routing\RouterFactory');
 
-        if ($lang['default'] !== NULL && is_array($lang['allowed'])) {
+        $lang = $config['configuration']['lang'];  
+        if ($lang['default'] !== NULL && $lang['allowed'] !== NULL) {
             $factory->addSetup('setLang', [$lang['default'], $lang['allowed']]);
         }
     }

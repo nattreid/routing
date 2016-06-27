@@ -15,20 +15,10 @@ services:
 router:
     routers:
         - FrontRouter('url', FALSE)
-    configuration: RouteConfigure
-```
-
-Nastaveni configuratoru
-```php
-class RouteConfigure implements \NAttreid\Routing\IConfigure {
-    public function getDefaultLanguage() {
-        return 'cs';
-    }
-
-    public function getAllowedLanguages() {
-        return ['cs', 'en'];
-    }
-}
+    configuration: 
+        lang:
+            default: @configuration::defaultLang
+            allowed: @configuration::allowedLang
 ```
 
 ## FrontRouter
