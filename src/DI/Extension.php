@@ -19,8 +19,9 @@ class Extension extends \Nette\DI\CompilerExtension {
      * @return string
      */
     private function getClass($router) {
-        $class = new \Nette\Reflection\ClassType($router->getEntity());
-        return $class->getShortName();
+        $class = is_object($router) ? $router->getEntity() : get_class($router);
+        $classType = new \Nette\Reflection\ClassType($class->getEntity());
+        return $classType->getShortName();
     }
 
     public function loadConfiguration() {
