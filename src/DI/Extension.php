@@ -15,12 +15,25 @@ class Extension extends \Nette\DI\CompilerExtension {
     ];
 
     /**
-     * @param string $router
+     * @param mixed $class
      * @return string
      */
-    private function getClass($router) {
-        $class = is_object($router) ? $router->getEntity() : $router;
-        $classType = new \Nette\Reflection\ClassType($class);
+    private function getClass($class) {
+        if ($class instanceof \Nette\DI\Statement) {
+            return $class->getEntity();
+        } elseif (is_object($class)) {
+            return get_class($class);
+        } else {
+            return $class;
+        }
+    }
+
+    /**
+     * @param mixed $class
+     * @return string
+     */
+    private function getShortName($class) {
+        $classType = new \Nette\Reflection\ClassType($this->getClass($class));
         return $classType->getShortName();
     }
 
@@ -35,8 +48,8 @@ class Extension extends \Nette\DI\CompilerExtension {
         }
 
         foreach ($config['routers'] as $router) {
-            $builder->addDefinition($this->prefix('router' . $this->getClass($router)))
-                    ->setClass($router->getEntity(), $router->arguments);
+            $builder->addDefinition($this->prefix('router' . $this->getShortName($router)))
+                    ->setClass($this->getClass($router), $router->arguments);
         }
 
         $builder->addDefinition($this->prefix('routerFactory'))
