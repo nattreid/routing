@@ -14,6 +14,9 @@ class RouterFactory {
     /** @var Router[] */
     private $routers = [];
 
+    /** @var Router[] */
+    private $indexedRouters = [];
+
     /** @var string */
     private $locale;
 
@@ -25,7 +28,7 @@ class RouterFactory {
     public function addRouter(Router $router, $position = NULL) {
         if ($position !== NULL) {
             $arr = [$router];
-            array_splice($this->routers, $position, 0, $arr);
+            array_splice($this->indexedRouters, $position, 0, $arr);
         } else {
             $this->routers[] = $router;
         }
@@ -46,7 +49,11 @@ class RouterFactory {
      */
     public function createRouter() {
         $routeList = new RouteList();
-        foreach ($this->routers as $router) {
+
+        ksort($this->indexedRouters);
+        $routers = array_merge(array_values($this->indexedRouters), $this->routers);
+
+        foreach ($routers as $router) {
             $router->setRouteList($routeList);
             $router->setLocale($this->locale);
             $router->createRoutes();
