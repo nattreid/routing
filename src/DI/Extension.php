@@ -20,7 +20,7 @@ class Extension extends \Nette\DI\CompilerExtension {
      */
     private function getClass($router) {
         $class = is_object($router) ? $router->getEntity() : $router;
-        $classType = new \Nette\Reflection\ClassType($class->getEntity());
+        $classType = new \Nette\Reflection\ClassType($class);
         return $classType->getShortName();
     }
 
