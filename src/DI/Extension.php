@@ -2,6 +2,8 @@
 
 namespace NAttreid\Routers\DI;
 
+use Nette\DI\Statement;
+
 /**
  * Rozsireni
  *
@@ -19,7 +21,7 @@ class Extension extends \Nette\DI\CompilerExtension {
      * @return string
      */
     private function getClass($class) {
-        if ($class instanceof \Nette\DI\Statement) {
+        if ($class instanceof Statement) {
             return $class->getEntity();
         } elseif (is_object($class)) {
             return get_class($class);
@@ -49,7 +51,7 @@ class Extension extends \Nette\DI\CompilerExtension {
 
         foreach ($config['routers'] as $router) {
             $builder->addDefinition($this->prefix('router' . $this->getShortName($router)))
-                    ->setClass($this->getClass($router), $router->arguments);
+                    ->setClass($this->getClass($router), $router instanceof Statement ? $router->arguments : []);
         }
 
         $builder->addDefinition($this->prefix('routerFactory'))
