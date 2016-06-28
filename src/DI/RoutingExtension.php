@@ -34,12 +34,9 @@ class RoutingExtension extends \Nette\DI\CompilerExtension {
         }
 
         foreach ($config['routers'] as $router) {
-            $name = $this->getShortName($router);
-
-            $builder->addDefinition($this->prefix('router' . $name))
+            $route = $builder->addDefinition($this->prefix('router' . $this->getShortName($router)))
                     ->setClass($this->getClass($router), $router instanceof Statement ? $router->arguments : []);
-
-            $factory->addSetup('addRouter', ['@' . $this->prefix('router' . $name)]);
+            $factory->addSetup('addRouter', [$route]);
         }
     }
 
