@@ -2,7 +2,8 @@
 
 namespace NAttreid\Routing\DI;
 
-use Nette\DI\Statement;
+use Nette\DI\Statement,
+    NAttreid\Routing\RouterFactory;
 
 /**
  * Rozsireni
@@ -26,7 +27,7 @@ class RoutingExtension extends \Nette\DI\CompilerExtension {
         $config = $this->validateConfig($this->defaults, $this->getConfig());
 
         $factory = $builder->addDefinition($this->prefix('routerFactory'))
-                ->setClass('NAttreid\Routing\RouterFactory');
+                ->setClass(RouterFactory::class);
 
         $lang = $config['configuration']['lang'];
         if ($lang['default'] !== NULL && $lang['allowed'] !== NULL) {
@@ -43,7 +44,7 @@ class RoutingExtension extends \Nette\DI\CompilerExtension {
     public function beforeCompile() {
         $builder = $this->getContainerBuilder();
         $builder->getDefinition('router')
-                ->setFactory('@NAttreid\Routing\RouterFactory::createRouter');
+                ->setFactory('@' . RouterFactory::class . '::createRouter');
     }
 
     /**
