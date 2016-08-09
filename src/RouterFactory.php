@@ -23,12 +23,12 @@ class RouterFactory {
     /**
      * Prida router
      * @param Router $router
-     * @param int $position
+     * @param int $priority
      */
-    public function addRouter(Router $router, $position = NULL) {
-        if ($position !== NULL) {
+    public function addRouter(Router $router, $priority = NULL) {
+        if ($priority !== NULL) {
             $arr = [$router];
-            array_splice($this->indexedRouters, $position, 0, $arr);
+            array_splice($this->indexedRouters, $priority, 0, $arr);
         } else {
             $this->routers[] = $router;
         }

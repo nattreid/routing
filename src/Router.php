@@ -13,6 +13,12 @@ use Nette\Application\IRouter,
  */
 abstract class Router {
 
+    CONST
+            PRIORITY_HIGH = 0,
+            PRIORITY_SYSTEM = 10,
+            PRIORITY_APP = 20,
+            PRIORITY_USER = 30;
+
     /** @var IRouter */
     private $router;
 
