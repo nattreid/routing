@@ -59,6 +59,7 @@ class RouterFactory {
         $routers = array_merge(array_values($this->indexedRouters), $this->routers);
 
         foreach ($routers as $router) {
+            /* @var $router Router */
             $router->setRouteList($routeList);
             $router->setLocale($this->locale);
             $router->createRoutes();
