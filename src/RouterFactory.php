@@ -2,7 +2,8 @@
 
 namespace NAttreid\Routing;
 
-use Nette\Application\Routers\RouteList;
+use Nette\Application\Routers\RouteList,
+    NAttreid\Utils\Arrays;
 
 /**
  * Router factory.
@@ -33,8 +34,7 @@ class RouterFactory {
      */
     public function addRouter(Router $router, $priority = NULL) {
         if ($priority !== NULL) {
-            $arr = [$router];
-            array_splice($this->indexedRouters, $priority, 0, $arr);
+            Arrays::slice($this->indexedRouters, $priority, $router);
         } else {
             $this->routers[] = $router;
         }
