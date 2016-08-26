@@ -27,10 +27,10 @@ abstract class Route extends \Nette\Application\Routers\Route {
      * {@inheritdoc }
      */
     public function match(IRequest $httpRequest) {
-        if (parent::match($httpRequest)) {
+        if (($request = parent::match($httpRequest))) {
             $url = Strings::replace($httpRequest->getUrl()->getPathInfo(), '/\/$/');
 
-            $this->parameters = new Parameters($httpRequest->getQuery());
+            $this->parameters = new Parameters($request->getParameters());
 
             if ($this->in($url)) {
                 return new Request(
@@ -52,9 +52,9 @@ abstract class Route extends \Nette\Application\Routers\Route {
     public function constructUrl(Request $appRequest, Url $refUrl) {
         if ($appRequest->presenterName === $this->getDefaults()[self::PRESENTER_KEY]) {
             $this->parameters = new Parameters($appRequest->getParameters());
-            
+
             // odstraneni parametru
-            $this->parameters->action; 
+            $this->parameters->action;
             $this->parameters->locale;
 
             $this->slug = [];
