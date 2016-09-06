@@ -15,7 +15,7 @@ use Nette\Utils\Strings;
 abstract class Route extends \Nette\Application\Routers\Route
 {
 
-	/** @var Parameters[] */
+	/** @var Parameters */
 	protected $parameters;
 
 	/** @var array */
