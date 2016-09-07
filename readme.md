@@ -13,9 +13,9 @@ router:
     routers:
         - FrontRouter('url', FALSE)
     configuration: 
-        lang:
-            default: @configuration::defaultLang
-            allowed: @configuration::allowedLang
+        locale:
+            default: cs
+            allowed: [cs, en]
 ```
 
 ## FrontRouter

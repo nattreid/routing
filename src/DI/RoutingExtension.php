@@ -16,7 +16,7 @@ class RoutingExtension extends \Nette\DI\CompilerExtension
 	private $defaults = [
 		'routers' => [],
 		'configuration' => [
-			'lang' => [
+			'locale' => [
 				'default' => NULL,
 				'allowed' => NULL
 			]
@@ -31,9 +31,9 @@ class RoutingExtension extends \Nette\DI\CompilerExtension
 		$factory = $builder->addDefinition($this->prefix('routerFactory'))
 			->setClass(RouterFactory::class);
 
-		$lang = $config['configuration']['lang'];
+		$lang = $config['configuration']['locale'];
 		if ($lang['default'] !== NULL && $lang['allowed'] !== NULL) {
-			$factory->addSetup('setLang', [$lang['default'], $lang['allowed']]);
+			$factory->addSetup('setLocale', [$lang['default'], $lang['allowed']]);
 		}
 
 		foreach ($config['routers'] as $router) {

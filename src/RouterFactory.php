@@ -47,7 +47,7 @@ class RouterFactory
 	 * @param string $default
 	 * @param array $allowed
 	 */
-	public function setLang($default, array $allowed)
+	public function setLocale($default, array $allowed)
 	{
 		$this->locale = '[<locale=' . $default . ' ' . implode('|', $allowed) . '>/]';
 	}
