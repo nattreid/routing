@@ -25,9 +25,9 @@ class FrontRouter extends \NAttreid\Routing\Router {
     /** @var PageRoute */
     private $pageRoute;
 
-    public function __construct($url, $secured, PagesRepository $pageModel) {
-        parent::__construct($url,$secured);
-        $this->pageRoute = new PageRoute($this->getUrl(), $pageModel, $this->getFlag());
+    public function __construct($url, PagesRepository $pageModel) {
+        parent::__construct($url);
+        $this->pageRoute = new PageRoute($this->getUrl(), $pageModel);
     }
 
     public function createRoutes() {
@@ -35,9 +35,9 @@ class FrontRouter extends \NAttreid\Routing\Router {
 
         $routes[] = $this->pageRoute;
 
-        $routes[] = new Route($this->getUrl(), 'Homepage:default', $this->getFlag());
+        $routes[] = new Route($this->getUrl(), 'Homepage:default');
         $routes[] = new Route($this->getUrl() . 'index.php', 'Page:default', Route::ONE_WAY);
-        $routes[] = new Route($this->getUrl() . '<presenter>[/<action>]', 'Page:default', $this->getFlag());
+        $routes[] = new Route($this->getUrl() . '<presenter>[/<action>]', 'Page:default');
     }
 
 }
