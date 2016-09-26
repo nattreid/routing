@@ -3,7 +3,6 @@
 namespace NAttreid\Routing;
 
 use Nette\Application\IRouter;
-use Nette\Application\Routers\Route;
 use Nette\Application\Routers\RouteList;
 
 /**
@@ -23,13 +22,9 @@ abstract class Router
 	/** @var string */
 	private $locale;
 
-	/** @var string */
-	private $flag;
-
-	public function __construct($url = NULL, $secured = FALSE)
+	public function __construct($url = NULL)
 	{
 		$this->url = $url;
-		$this->flag = $secured ? Route::SECURED : Route::OPTIONAL;
 	}
 
 	/**
@@ -57,15 +52,6 @@ abstract class Router
 	protected function getUrl()
 	{
 		return $this->url . $this->locale;
-	}
-
-	/**
-	 * Vrati flat
-	 * @return int
-	 */
-	protected function getFlag()
-	{
-		return $this->flag;
 	}
 
 	/**

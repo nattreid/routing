@@ -4,6 +4,7 @@ namespace NAttreid\Routing\DI;
 
 use NAttreid\Routing\RouterFactory;
 use Nette\DI\Statement;
+use Nette\Reflection\ClassType;
 
 /**
  * Rozsireni
@@ -71,7 +72,7 @@ class RoutingExtension extends \Nette\DI\CompilerExtension
 	 */
 	private function getShortName($class)
 	{
-		$classType = new \Nette\Reflection\ClassType($this->getClass($class));
+		$classType = new ClassType($this->getClass($class));
 		return $classType->getShortName();
 	}
 
