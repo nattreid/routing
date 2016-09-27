@@ -3,15 +3,20 @@
 namespace NAttreid\Routing;
 
 use NAttreid\Utils\Arrays;
+use Nette\Application\IRouter;
 use Nette\Application\Routers\RouteList;
+use Nette\SmartObject;
 
 /**
  * Router factory.
+ *
+ * @property-read string $variable
  *
  * @author Attreid <attreid@gmail.com>
  */
 class RouterFactory
 {
+	use SmartObject;
 
 	CONST
 		PRIORITY_HIGH = 0,
@@ -27,6 +32,22 @@ class RouterFactory
 
 	/** @var string */
 	private $locale;
+
+	/** @var string */
+	private $variable;
+
+	public function __construct($variable)
+	{
+		$this->variable = $variable;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getVariable()
+	{
+		return $this->variable;
+	}
 
 	/**
 	 * Prida router
@@ -49,11 +70,11 @@ class RouterFactory
 	 */
 	public function setLocale($default, array $allowed)
 	{
-		$this->locale = '[<locale=' . $default . ' ' . implode('|', $allowed) . '>/]';
+		$this->locale = "[<{$this->variable}=$default " . implode('|', $allowed) . '>/]';
 	}
 
 	/**
-	 * @return \Nette\Application\IRouter
+	 * @return IRouter
 	 */
 	public function createRouter()
 	{
