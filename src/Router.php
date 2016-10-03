@@ -22,7 +22,7 @@ abstract class Router
 	/** @var string */
 	private $locale;
 
-	public function __construct($url = NULL)
+	public function __construct($url = null)
 	{
 		$this->url = $url;
 	}
@@ -59,9 +59,9 @@ abstract class Router
 	 * @param string $module
 	 * @return IRouter
 	 */
-	protected function getRouter($module = NULL)
+	protected function getRouter($module = null)
 	{
-		if ($module !== NULL) {
+		if ($module !== null) {
 			return $this->router[] = new RouteList($module);
 		} else {
 			return $this->router;

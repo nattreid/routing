@@ -54,9 +54,9 @@ class RouterFactory
 	 * @param Router $router
 	 * @param int $priority
 	 */
-	public function addRouter(Router $router, $priority = NULL)
+	public function addRouter(Router $router, $priority = null)
 	{
-		if ($priority !== NULL) {
+		if ($priority !== null) {
 			Arrays::slice($this->indexedRouters, $priority, $router);
 		} else {
 			$this->routers[] = $router;
