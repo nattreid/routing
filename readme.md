@@ -29,9 +29,9 @@ class FrontRouter extends \NAttreid\Routing\Router {
     public function createRoutes() {
         $routes = $this->getRouter('Front');
 
-        $routes[] = new Route($this->getUrl(), 'Homepage:default');
-        $routes[] = new Route($this->getUrl() . 'index.php', 'Page:default', Route::ONE_WAY);
-        $routes[] = new Route($this->getUrl() . '<presenter>[/<action>]', 'Page:default');
+        $routes[] = new Route($this->url, 'Homepage:default');
+        $routes[] = new Route($this->url . 'index.php', 'Page:default', Route::ONE_WAY);
+        $routes[] = new Route($this->url . '<presenter>[/<action>]', 'Page:default');
     }
 
 }
