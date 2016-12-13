@@ -4,14 +4,18 @@ namespace NAttreid\Routing;
 
 use Nette\Application\IRouter;
 use Nette\Application\Routers\RouteList;
+use Nette\SmartObject;
 
 /**
  * Router modelu
+ *
+ * @property-read string $url
  *
  * @author Attreid <attreid@gmail.com>
  */
 abstract class Router
 {
+	use SmartObject;
 
 	/** @var IRouter */
 	private $router;
