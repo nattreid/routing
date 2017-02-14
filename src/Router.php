@@ -10,7 +10,6 @@ use Nette\SmartObject;
  * Router modelu
  *
  * @property-read string $url
- * @property-read string $host
  *
  * @author Attreid <attreid@gmail.com>
  */
@@ -22,14 +21,14 @@ abstract class Router
 	private $router;
 
 	/** @var string */
-	private $host;
+	private $url;
 
 	/** @var string */
 	private $locale;
 
-	public function __construct($host = null)
+	public function __construct($url = null)
 	{
-		$this->host = $host;
+		$this->url = $url;
 	}
 
 	/**
@@ -56,16 +55,7 @@ abstract class Router
 	 */
 	protected function getUrl()
 	{
-		return $this->host . $this->locale;
-	}
-
-	/**
-	 * Vrati host
-	 * @return string
-	 */
-	protected function getHost()
-	{
-		return $this->host;
+		return $this->url . $this->locale;
 	}
 
 	/**
