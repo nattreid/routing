@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace NAttreid\Routing\DI;
 
 use NAttreid\Routing\RouterFactory;
@@ -58,7 +60,7 @@ class RoutingExtension extends \Nette\DI\CompilerExtension
 	 * @param mixed $class
 	 * @return string
 	 */
-	private function getClass($class)
+	private function getClass($class): string
 	{
 		if ($class instanceof Statement) {
 			return $class->getEntity();
@@ -73,7 +75,7 @@ class RoutingExtension extends \Nette\DI\CompilerExtension
 	 * @param mixed $class
 	 * @return string
 	 */
-	private function getShortName($class)
+	private function getShortName($class): string
 	{
 		$classType = new ClassType($this->getClass($class));
 		return $classType->getShortName();

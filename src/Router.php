@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace NAttreid\Routing;
 
 use Nette\Application\IRouter;
@@ -21,12 +23,12 @@ abstract class Router
 	private $router;
 
 	/** @var string */
-	private $url;
+	private $url = '';
 
 	/** @var string */
-	private $locale;
+	private $locale = '';
 
-	public function __construct($url = null)
+	public function __construct(string $url = null)
 	{
 		$this->url = $url;
 	}
@@ -44,7 +46,7 @@ abstract class Router
 	 * Nastavi locale
 	 * @param string $locale
 	 */
-	public function setLocale($locale)
+	public function setLocale(string $locale)
 	{
 		$this->locale = $locale;
 	}
@@ -53,7 +55,7 @@ abstract class Router
 	 * Vrati url
 	 * @return string
 	 */
-	protected function getUrl()
+	protected function getUrl(): string
 	{
 		return $this->url . $this->locale;
 	}
@@ -63,7 +65,7 @@ abstract class Router
 	 * @param string $module
 	 * @return IRouter
 	 */
-	protected function getRouter($module = null)
+	protected function getRouter(string $module = null): IRouter
 	{
 		if ($module !== null) {
 			return $this->router[] = new RouteList($module);

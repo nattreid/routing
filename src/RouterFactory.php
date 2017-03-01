@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace NAttreid\Routing;
 
 use NAttreid\Utils\Arrays;
@@ -36,7 +38,7 @@ class RouterFactory
 	/** @var string */
 	private $variable;
 
-	public function __construct($variable)
+	public function __construct(string $variable)
 	{
 		$this->variable = $variable;
 	}
@@ -44,7 +46,7 @@ class RouterFactory
 	/**
 	 * @return string
 	 */
-	public function getVariable()
+	public function getVariable(): string
 	{
 		return $this->variable;
 	}
@@ -54,7 +56,7 @@ class RouterFactory
 	 * @param Router $router
 	 * @param int $priority
 	 */
-	public function addRouter(Router $router, $priority = null)
+	public function addRouter(Router $router, int $priority = null)
 	{
 		if ($priority !== null) {
 			Arrays::slice($this->indexedRouters, $priority, $router);
@@ -68,7 +70,7 @@ class RouterFactory
 	 * @param string $default
 	 * @param array $allowed
 	 */
-	public function setLocale($default, array $allowed)
+	public function setLocale(string $default, array $allowed)
 	{
 		$this->locale = "[<{$this->variable}=$default " . implode('|', $allowed) . '>/]';
 	}
@@ -76,7 +78,7 @@ class RouterFactory
 	/**
 	 * @return IRouter
 	 */
-	public function createRouter()
+	public function createRouter(): IRouter
 	{
 		$routeList = new RouteList();
 
