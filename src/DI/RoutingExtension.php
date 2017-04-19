@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace NAttreid\Routing\DI;
 
 use NAttreid\Routing\RouterFactory;
+use Nette\DI\CompilerExtension;
 use Nette\DI\Statement;
 use Nette\Reflection\ClassType;
 
@@ -13,7 +14,7 @@ use Nette\Reflection\ClassType;
  *
  * @author Attreid <attreid@gmail.com>
  */
-class RoutingExtension extends \Nette\DI\CompilerExtension
+class RoutingExtension extends CompilerExtension
 {
 
 	private $defaults = [
@@ -27,7 +28,7 @@ class RoutingExtension extends \Nette\DI\CompilerExtension
 		]
 	];
 
-	public function loadConfiguration()
+	public function loadConfiguration(): void
 	{
 		$builder = $this->getContainerBuilder();
 		$config = $this->validateConfig($this->defaults, $this->getConfig());
@@ -49,7 +50,7 @@ class RoutingExtension extends \Nette\DI\CompilerExtension
 		}
 	}
 
-	public function beforeCompile()
+	public function beforeCompile(): void
 	{
 		$builder = $this->getContainerBuilder();
 		$builder->getDefinition('router')
