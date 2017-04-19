@@ -74,5 +74,5 @@ abstract class Router
 		}
 	}
 
-	abstract public function createRoutes();
+	abstract public function createRoutes(): void;
 }
