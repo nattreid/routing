@@ -36,7 +36,7 @@ class RoutingExtension extends CompilerExtension
 		$lang = $config['configuration']['locale'];
 
 		$factory = $builder->addDefinition($this->prefix('routerFactory'))
-			->setClass(RouterFactory::class)
+			->setType(RouterFactory::class)
 			->setArguments([$lang['variable']]);
 
 		if ($lang['default'] !== null && $lang['allowed'] !== null) {
@@ -45,7 +45,8 @@ class RoutingExtension extends CompilerExtension
 
 		foreach ($config['routers'] as $router) {
 			$route = $builder->addDefinition($this->prefix('router' . $this->getShortName($router)))
-				->setClass($this->getClass($router), $router instanceof Statement ? $router->arguments : []);
+				->setType($this->getClass($router))
+				->setFactory($this->getClass($router), $router instanceof Statement ? $router->arguments : []);
 			$factory->addSetup('addRouter', [$route]);
 		}
 	}
