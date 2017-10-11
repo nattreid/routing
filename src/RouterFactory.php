@@ -32,7 +32,7 @@ class RouterFactory
 	/** @var Router[] */
 	private $indexedRouters = [];
 
-	/** @var string */
+	/** @var string|null */
 	private $locale;
 
 	/** @var string */
@@ -88,7 +88,9 @@ class RouterFactory
 		foreach ($routers as $router) {
 			/* @var $router Router */
 			$router->setRouteList($routeList);
-			$router->setLocale($this->locale);
+			if ($this->locale !== null) {
+				$router->setLocale($this->locale);
+			}
 			$router->createRoutes();
 		}
 		return $routeList;
