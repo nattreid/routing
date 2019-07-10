@@ -44,10 +44,14 @@ class RoutingExtension extends CompilerExtension
 		}
 
 		foreach ($config['routers'] as $router) {
+			$priority = null;
+			if (is_array($router)) {
+				list($router, $priority) = $router;
+			}
 			$route = $builder->addDefinition($this->prefix('router' . $this->getShortName($router)))
 				->setType($this->getClass($router))
 				->setFactory($this->getClass($router), $router instanceof Statement ? $router->arguments : []);
-			$factory->addSetup('addRouter', [$route]);
+			$factory->addSetup('addRouter', [$route, $priority]);
 		}
 	}
 

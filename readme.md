@@ -12,6 +12,7 @@ a nastavte. Router přebírá parametry $url a $sercure. $url => adresa, $secure
 router:
     routers:
         - FrontRouter('//url/')
+        - {FrontRouter('//url/'), 0} #router s prioritou 
     configuration: 
         locale:
             default: cs
