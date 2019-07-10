@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace NAttreid\Routing;
 
-use NAttreid\Utils\Arrays;
 use Nette\Application\IRouter;
 use Nette\Application\Routers\RouteList;
 use Nette\SmartObject;
@@ -26,11 +25,8 @@ class RouterFactory
 		PRIORITY_APP = 20,
 		PRIORITY_USER = 30;
 
-	/** @var Router[] */
+	/** @var Router[][] */
 	private $routers = [];
-
-	/** @var Router[] */
-	private $indexedRouters = [];
 
 	/** @var string|null */
 	private $locale;
@@ -58,11 +54,13 @@ class RouterFactory
 	 */
 	public function addRouter(Router $router, int $priority = null)
 	{
-		if ($priority !== null) {
-			Arrays::slice($this->indexedRouters, $priority, $router);
-		} else {
-			$this->routers[] = $router;
+		$priority = $priority ?? PHP_INT_MAX;
+
+		if (!isset($this->routers[$priority])) {
+			$this->routers[$priority] = [];
 		}
+
+		$this->routers[$priority][] = $router;
 	}
 
 	/**
@@ -82,16 +80,17 @@ class RouterFactory
 	{
 		$routeList = new RouteList();
 
-		ksort($this->indexedRouters);
-		$routers = array_merge(array_values($this->indexedRouters), $this->routers);
+		ksort($this->routers);
 
-		foreach ($routers as $router) {
-			/* @var $router Router */
-			$router->setRouteList($routeList);
-			if ($this->locale !== null) {
-				$router->setLocale($this->locale);
+		foreach ($this->routers as $routers) {
+			foreach ($routers as $router) {
+				/* @var $router Router */
+				$router->setRouteList($routeList);
+				if ($this->locale !== null) {
+					$router->setLocale($this->locale);
+				}
+				$router->createRoutes();
 			}
-			$router->createRoutes();
 		}
 		return $routeList;
 	}
