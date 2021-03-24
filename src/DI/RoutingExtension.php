@@ -39,8 +39,8 @@ class RoutingExtension extends CompilerExtension
 			->setType(RouterFactory::class)
 			->setArguments([$lang['variable']]);
 
-		if ($lang['default'] !== null && $lang['allowed'] !== null) {
-			$factory->addSetup('setLocale', [$lang['default'], $lang['allowed']]);
+		if ($lang['allowed'] !== null) {
+			$factory->addSetup('setLocale', [$lang['allowed'], $lang['default']]);
 		}
 
 		foreach ($config['routers'] as $router) {

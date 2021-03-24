@@ -37,7 +37,7 @@ abstract class Router
 	 * Nastavi hlavni router
 	 * @param IRouter $router
 	 */
-	public function setRouteList(IRouter $router)
+	public function setRouteList(IRouter $router):void
 	{
 		$this->router = $router;
 	}
@@ -46,7 +46,7 @@ abstract class Router
 	 * Nastavi locale
 	 * @param string $locale
 	 */
-	public function setLocale(string $locale)
+	public function setLocale(string $locale):void
 	{
 		$this->locale = $locale;
 	}

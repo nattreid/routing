@@ -19,7 +19,7 @@ class RouterFactory
 {
 	use SmartObject;
 
-	CONST
+	const
 		PRIORITY_HIGH = 0,
 		PRIORITY_SYSTEM = 10,
 		PRIORITY_APP = 20,
@@ -52,7 +52,7 @@ class RouterFactory
 	 * @param Router $router
 	 * @param int $priority
 	 */
-	public function addRouter(Router $router, int $priority = null)
+	public function addRouter(Router $router, int $priority = null): void
 	{
 		$priority = $priority ?? PHP_INT_MAX;
 
@@ -65,12 +65,12 @@ class RouterFactory
 
 	/**
 	 * Nastavi jazyk
-	 * @param string $default
 	 * @param array $allowed
+	 * @param string|null $default
 	 */
-	public function setLocale(string $default, array $allowed)
+	public function setLocale(array $allowed, string $default = null): void
 	{
-		$this->locale = "[<{$this->variable}=$default " . implode('|', $allowed) . '>/]';
+		$this->locale = "[<{$this->variable}" . ($default !== null ? "=$default" : "") . " " . implode('|', $allowed) . '>/]';
 	}
 
 	/**
