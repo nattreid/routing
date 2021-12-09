@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace NAttreid\Routing;
 
-use Nette\Application\IRouter;
 use Nette\Application\Routers\RouteList;
 use Nette\SmartObject;
 
@@ -19,7 +18,7 @@ abstract class Router
 {
 	use SmartObject;
 
-	/** @var IRouter */
+	/** @var RouteList */
 	private $router;
 
 	/** @var string */
@@ -35,9 +34,9 @@ abstract class Router
 
 	/**
 	 * Nastavi hlavni router
-	 * @param IRouter $router
+	 * @param RouteList $router
 	 */
-	public function setRouteList(IRouter $router):void
+	public function setRouteList(RouteList $router): void
 	{
 		$this->router = $router;
 	}
@@ -46,7 +45,7 @@ abstract class Router
 	 * Nastavi locale
 	 * @param string $locale
 	 */
-	public function setLocale(string $locale):void
+	public function setLocale(string $locale): void
 	{
 		$this->locale = $locale;
 	}
@@ -63,9 +62,9 @@ abstract class Router
 	/**
 	 * Vrati routu
 	 * @param string $module
-	 * @return IRouter
+	 * @return RouteList
 	 */
-	protected function getRouter(string $module = null): IRouter
+	protected function getRouter(string $module = null): RouteList
 	{
 		if ($module !== null) {
 			return $this->router[] = new RouteList($module);

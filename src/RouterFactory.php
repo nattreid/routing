@@ -74,9 +74,9 @@ class RouterFactory
 	}
 
 	/**
-	 * @return IRouter
+	 * @return RouteList
 	 */
-	public function createRouter(): IRouter
+	public function createRouter(): RouteList
 	{
 		$routeList = new RouteList();
 
@@ -84,7 +84,6 @@ class RouterFactory
 
 		foreach ($this->routers as $routers) {
 			foreach ($routers as $router) {
-				/* @var $router Router */
 				$router->setRouteList($routeList);
 				if ($this->locale !== null) {
 					$router->setLocale($this->locale);
